@@ -21,14 +21,21 @@ USAGE:
 FILE PATHS — edit this line if your CSV is in a different folder:
 """
 
-ROUND1_CSV = "csv/round1_with_emails.csv"   # 93 responses (the main dataset)
+ROUND1_CSV = "Adapted Perceived Stress Scale for Sri Lankan Undergraduates (APSS-SLU) (Responses) - Form responses.csv"   # 93 responses (the main dataset)
 
 # =============================================================================
+import sys
 import pandas as pd
 import numpy as np
 import scipy.stats as stats
 from itertools import combinations
 from datetime import date
+
+# Print the Unicode symbols (α, η², →, …) safely on Windows consoles (cp1252)
+try:
+    sys.stdout.reconfigure(encoding="utf-8")
+except (AttributeError, ValueError):
+    pass
 
 # ── Same item definitions as validation script ─────────────────────────────
 REVERSE_KEYS = [

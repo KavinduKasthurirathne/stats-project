@@ -26,13 +26,14 @@ USAGE:
 FILE PATHS — edit this line if your CSVs are in a different folder:
 """
 
-ROUND1_CSV  = "csv/round1_with_emails.csv"   # 93 responses
-ROUND2_CSV  = "csv/round2.csv"               # 76 responses
+ROUND1_CSV  = "Adapted Perceived Stress Scale for Sri Lankan Undergraduates (APSS-SLU) (Responses) - Form responses.csv"   # 93 responses
+ROUND2_CSV  = "2nd Round Responses.csv"               # 76 responses
 OUTPUT_DIR  = "figures"                       # output folder (created if missing)
 DPI         = 300                             # resolution for PNG files
 
 # =============================================================================
 import os
+import sys
 import pandas as pd
 import numpy as np
 import scipy.stats as stats
@@ -41,6 +42,12 @@ matplotlib.use("Agg")                         # non-interactive backend
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 from matplotlib import rcParams
+
+# Print any Unicode symbols safely on Windows consoles (cp1252)
+try:
+    sys.stdout.reconfigure(encoding="utf-8")
+except (AttributeError, ValueError):
+    pass
 
 # ── Global plot style ─────────────────────────────────────────────────────────
 rcParams["font.family"]   = "serif"
@@ -146,8 +153,15 @@ def fig_retest(d1, d2):
     d1 = d1.copy(); d2 = d2.copy()
     d1["_k"] = d1["Email address"].astype(str).str.lower().str.strip()
     d2["_k"] = d2["Email address"].astype(str).str.lower().str.strip()
+    d1 = d1[d1["_k"].ne("") & d1["_k"].ne("nan")]
+    d2 = d2[d2["_k"].ne("") & d2["_k"].ne("nan")]
     m = pd.merge(d1[["_k", "Total"]], d2[["_k", "Total"]],
                  on="_k", suffixes=("_T1", "_T2"))
+
+    if len(m) < 3:
+        print(f"  [SKIPPED] Only {len(m)} matched respondent(s) — need populated emails "
+              "in both CSVs. Figure 1 not generated.")
+        return
 
     t1 = m["Total_T1"].values
     t2 = m["Total_T2"].values

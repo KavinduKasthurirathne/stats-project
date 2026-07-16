@@ -16,16 +16,23 @@ USAGE:
 FILE PATHS — edit these two lines if your CSV files are in a different folder:
 """
 
-ROUND1_CSV = "Adapted Perceived Stress Scale for Sri Lankan Undergraduates (APSS-SLU) - Responses.csv"   # 93 responses (with Email address)
+ROUND1_CSV = "Adapted Perceived Stress Scale for Sri Lankan Undergraduates (APSS-SLU) (Responses) - Form responses.csv"   # 93 responses (with Email address)
 ROUND2_CSV = "2nd Round Responses.csv"               # 76 responses (with Email address)
 
 # =============================================================================
+import sys
 import pandas as pd
 import numpy as np
 import scipy.stats as stats
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 from datetime import date
+
+# Print the Unicode symbols (α, →, ρ, …) safely on Windows consoles (cp1252)
+try:
+    sys.stdout.reconfigure(encoding="utf-8")
+except (AttributeError, ValueError):
+    pass
 
 # ── Item definitions ──────────────────────────────────────────────────────────
 # Identifies columns by a unique substring of the question text.
@@ -315,13 +322,23 @@ def main():
     # Match by email (case-insensitive)
     d1["_key"] = d1["Email address"].astype(str).str.lower().str.strip()
     d2["_key"] = d2["Email address"].astype(str).str.lower().str.strip()
+    # Drop blank/NaN keys so anonymous rows never merge into false pairs
+    d1_keyed = d1[d1["_key"].ne("") & d1["_key"].str.lower().ne("nan")]
+    d2_keyed = d2[d2["_key"].ne("") & d2["_key"].str.lower().ne("nan")]
     m = pd.merge(
-        d1[["_key", "Total"]],
-        d2[["_key", "Total"]],
+        d1_keyed[["_key", "Total"]],
+        d2_keyed[["_key", "Total"]],
         on="_key", suffixes=("_T1", "_T2")
     )
 
     n_match = len(m)
+    if n_match < 3:
+        R.p(f"  [SKIPPED] Only {n_match} matched respondent(s) across the two rounds.")
+        R.p("  Test-retest reliability needs matching emails in BOTH files. Check that")
+        R.p("  the Round 1 CSV contains a populated 'Email address' column, then re-run.")
+        R.save()
+        return
+
     r_p, p_p = stats.pearsonr(m["Total_T1"], m["Total_T2"])
     r_s, _   = stats.spearmanr(m["Total_T1"], m["Total_T2"])
     t_rel, p_rel = stats.ttest_rel(m["Total_T1"], m["Total_T2"])
