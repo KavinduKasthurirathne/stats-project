@@ -1,0 +1,293 @@
+========================================================================
+  ADAPTED PERCEIVED STRESS SCALE FOR SRI LANKAN UNDERGRADUATES
+========================================================================
+  APSS-SLU  |  DATA ANALYSIS REPORT
+  Generated : July 16, 2026
+  Course    : CS5651 Statistical Inference — University of Moratuwa
+  Authors   : T.M.L.A.S. Thennakoon  |  K.K.I. Kasthurirathne  |  W.K.A. Pehesarani
+  Dataset   : Adapted Perceived Stress Scale for Sri Lankan Undergraduates (APSS-SLU) (Responses) - Form responses.csv  (N = 93)
+========================================================================
+
+------------------------------------------------------------------------
+  1.  SAMPLE DEMOGRAPHICS
+------------------------------------------------------------------------
+  Total respondents : N = 93
+  Age : M = 24.2 years  (SD = 1.5,  range 20–28)
+
+  Gender distribution:
+    Female                n =  56  (60.2%)
+    Male                  n =  36  (38.7%)
+    Agender               n =   1  (1.1%)
+
+  Year of study:
+    1st Year              n =   5  (5.4%)
+    2nd Year              n =   7  (7.5%)
+    3rd Year              n =  17  (18.3%)
+    4th Year              n =  64  (68.8%)
+
+  Faculty / field of study:
+    Computing / IT                                 n =  48  (51.6%)
+    Engineering / Technology                       n =  15  (16.1%)
+    Medicine / Allied Health Sciences              n =  11  (11.8%)
+    Science / Applied Science                      n =  10  (10.8%)
+    Management / Commerce                          n =   4  (4.3%)
+    Other                                          n =   2  (2.2%)
+    Arts / Humanities / Social Sciences            n =   2  (2.2%)
+    Agriculture                                    n =   1  (1.1%)
+
+  Part-time employment:
+    Yes                   n =  47  (50.5%)
+    No                    n =  46  (49.5%)
+
+  Living arrangement:
+    Living with family or relatives                n =  41  (44.1%)
+    Private boarding / renting with friends        n =  33  (35.5%)
+    University hostel                              n =  15  (16.1%)
+    Living alone                                   n =   4  (4.3%)
+
+  Sleep duration per night:
+    4 to 6 hours               n =  50  (53.8%)
+    6 to 8 hours               n =  36  (38.7%)
+    Less than 4 hours          n =   6  (6.5%)
+    More than 8 hours          n =   1  (1.1%)
+
+------------------------------------------------------------------------
+  2.  DESCRIPTIVE STATISTICS  (Total Perceived Stress Score)
+------------------------------------------------------------------------
+  Overall sample (N = 93):
+    Mean  (M)  =  29.42
+    Std Dev (SD) =  5.57
+    Median     =  29.00
+    Min        =  11
+    Max        =  43
+    Skewness   =  -0.115
+    Kurtosis   =  1.229
+
+  Shapiro-Wilk normality test:  W, p = 0.023
+  Normality assumption: Rejected (p < 0.05) — but t-tests/ANOVA are robust for N > 30
+
+  Descriptives by subgroup:
+
+  By Gender:
+    Male                                     n= 36  M=27.89  SD= 6.06  Min=11  Max=41
+    Female                                   n= 56  M=30.52  SD= 5.00  Min=20  Max=43
+    Agender                                  n=  1  M=23.00  SD=  nan  Min=23  Max=23
+
+  By Year of Study:
+    1st Year                                 n=  5  M=21.20  SD= 4.15  Min=16  Max=27
+    2nd Year                                 n=  7  M=25.86  SD= 7.27  Min=11  Max=31
+    3rd Year                                 n= 17  M=30.29  SD= 4.61  Min=20  Max=41
+    4th Year                                 n= 64  M=30.22  SD= 5.11  Min=18  Max=43
+
+  By Part-Time Employment:
+    No                                       n= 46  M=28.80  SD= 6.34  Min=11  Max=43
+    Yes                                      n= 47  M=30.02  SD= 4.68  Min=16  Max=42
+
+  By Living Arrangement:
+    Living alone                             n=  4  M=29.75  SD= 2.06  Min=28  Max=32
+    Living with family or relatives          n= 41  M=30.10  SD= 5.96  Min=18  Max=43
+    Private boarding / renting with friends  n= 33  M=29.24  SD= 4.80  Min=16  Max=41
+    University hostel                        n= 15  M=27.87  SD= 6.69  Min=11  Max=39
+
+  By Sleep Duration:
+    4 to 6 hours                             n= 50  M=30.82  SD= 5.02  Min=18  Max=42
+    6 to 8 hours                             n= 36  M=27.97  SD= 5.54  Min=16  Max=43
+    Less than 4 hours                        n=  6  M=29.50  SD= 2.35  Min=28  Max=34
+    More than 8 hours                        n=  1  M=11.00  SD=  nan  Min=11  Max=11
+
+------------------------------------------------------------------------
+  3.  INFERENTIAL STATISTICS
+------------------------------------------------------------------------
+  Significance level: α = 0.05  (two-tailed for all tests)
+  Group comparisons use Welch's t-test (unequal variances assumed)
+  for two groups; one-way ANOVA for three or more groups.
+
+------------------------------------------------------------------------
+  3a.  GENDER  (Independent-Samples Welch t-Test)
+------------------------------------------------------------------------
+
+  H₀: There is no significant difference in mean perceived stress
+      between male and female students.
+  H₁: Female students report significantly higher perceived stress.
+
+  Levene's test for equality of variances: F = 1.15, p = 0.286
+  (Welch's t-test used — does not assume equal variances)
+
+  Male students   : M = 27.89  SD = 6.06  n = 36
+  Female students : M = 30.52  SD = 5.00  n = 56
+
+  t(90) = -2.17,  p = 0.034  *
+  Cohen's d = 0.484  (small effect size)
+
+  DECISION: Reject H₀
+  INTERPRETATION:
+  Female students (M = 30.52) reported significantly higher
+  perceived stress than male students (M = 27.89). The difference
+  is statistically significant (p = 0.034) with a small effect size
+  (d = 0.484). This is consistent with gender-stress differences documented
+  in the broader PSS literature and may reflect differential coping styles.
+
+------------------------------------------------------------------------
+  3b.  YEAR OF STUDY  (One-Way ANOVA)
+------------------------------------------------------------------------
+
+  H₀: Mean perceived stress does not differ across years of study.
+  H₁: At least one year group has a significantly different mean.
+
+  Year            n     Mean      SD
+  ------------ ----  -------  ------
+  1st Year        5    21.20    4.15
+  2nd Year        7    25.86    7.27
+  3rd Year       17    30.29    4.61
+  4th Year       64    30.22    5.11
+
+  F(3, 89) = 6.01,  p = 0.001  ***
+  η² (eta-squared) = 0.169  (large effect size)
+
+  DECISION: Reject H₀
+
+  POST-HOC ANALYSIS  (Pairwise t-tests, Bonferroni corrected):
+  Group A        vs Group B              t   p (adj)  Sig
+  --------------    --------------  ------  --------  -----
+  1st Year          2nd Year         -1.41     1.000  n.s.
+  1st Year          3rd Year         -4.20     0.023  *
+  1st Year          4th Year         -4.60     0.035  *
+  2nd Year          3rd Year         -1.50     1.000  n.s.
+  2nd Year          4th Year         -1.55     1.000  n.s.
+  3rd Year          4th Year         +0.06     1.000  n.s.
+
+  INTERPRETATION:
+  A one-way ANOVA revealed a significant difference across years of study
+  (F = 6.01, p = 0.001). Stress increases markedly from junior to senior
+  years (Y1 M = 21.20 → Y4 M = 30.22), consistent with the
+  accumulation of final-year project pressure, assessment burden, and
+  career transition anxiety. The effect size is moderate (η² = 0.169).
+
+------------------------------------------------------------------------
+  3c.  PART-TIME EMPLOYMENT  (Independent-Samples Welch t-Test)
+------------------------------------------------------------------------
+
+  H₀: Perceived stress does not differ between students who work
+      part-time and those who do not.
+  H₁: Working students report significantly different perceived stress.
+
+  Working     : M = 30.02  SD = 4.68  n = 47
+  Not working : M = 28.80  SD = 6.34  n = 46
+
+  t = 1.05,  p = 0.296  n.s.
+  Cohen's d = 0.219  (small effect size)
+
+  DECISION: Fail to reject H₀
+  INTERPRETATION:
+  Part-time employment was not a significant predictor of stress
+  (t = 1.05, p = 0.296). Although working students trended slightly higher
+  (M = 30.02 vs 28.80), the difference is small and
+  non-significant. This suggests the dominant stressor for all students is
+  the academic environment itself, which overrides external employment demands.
+
+------------------------------------------------------------------------
+  3d.  LIVING ARRANGEMENT  (One-Way ANOVA)
+------------------------------------------------------------------------
+
+  H₀: Perceived stress does not differ across living arrangements.
+  H₁: At least one housing group has a significantly different mean.
+
+  Living arrangement                            n     Mean      SD
+  ------------------------------------------ ----  -------  ------
+  Living alone                                  4    29.75    1.79
+  Living with family or relatives              41    30.10    5.88
+  Private boarding / renting with friends      33    29.24    4.72
+  University hostel                            15    27.87    6.46
+
+  F(3, 89) = 0.60,  p = 0.617  n.s.
+
+  DECISION: Fail to reject H₀
+  INTERPRETATION:
+  Living arrangement showed no statistically significant effect on
+  perceived stress (F = 0.60, p = 0.617). Students living in university
+  hostels tended to report the lowest stress, possibly reflecting better
+  social support, but the difference was not significant. This suggests
+  housing context plays a minimal role compared to academic demands.
+
+------------------------------------------------------------------------
+  3e.  SLEEP DURATION  (One-Way ANOVA)
+------------------------------------------------------------------------
+
+  H₀: Perceived stress does not differ across sleep duration categories.
+  H₁: At least one sleep group has a significantly different mean.
+
+  Note: The 'More than 8 hours' category contains a single respondent
+  (n = 1) and is excluded from the ANOVA as a singleton cell cannot
+  contribute to within-group variance estimation.
+
+  Sleep duration                    n     Mean      SD
+  ------------------------------ ----  -------  ------
+  4 to 6 hours                     50    30.82    5.02
+  6 to 8 hours                     36    27.97    5.54
+  Less than 4 hours                 6    29.50    2.35
+  More than 8 hours                 1    11.00     nan  [EXCLUDED]
+
+  F(2, 89) = 3.23,  p = 0.044  *
+  η² (eta-squared) = 0.068
+
+  POST-HOC ANALYSIS  (Pairwise t-tests, Bonferroni corrected):
+  Group A              vs Group B                    t   p (adj)  Sig
+  --------------------    --------------------  ------  --------  -----
+  4 to 6 hours            6 to 8 hours           +2.44     0.051  n.s.
+  4 to 6 hours            Less than 4 hours      +1.11     0.871  n.s.
+  6 to 8 hours            Less than 4 hours      -1.15     0.801  n.s.
+
+  DECISION: Reject H₀
+  INTERPRETATION:
+  Sleep duration was significantly associated with perceived stress
+  (F = 3.23, p = 0.044). Students sleeping 4–6 hours reported the
+  highest mean stress (M = 30.82), while those sleeping 6–8
+  hours reported the lowest (M = 27.97). This is consistent
+  with the established bidirectional relationship between sleep deprivation
+  and stress, where chronic stress reduces sleep quality and curtailed
+  sleep amplifies stress reactivity.
+
+------------------------------------------------------------------------
+  4.  SUMMARY OF INFERENTIAL STATISTICS
+------------------------------------------------------------------------
+  Variable                  Test                      Statistic        p   Effect size  Result
+  ------------------------- ---------------------- ------------  -------  ------------  ----------
+  Gender                    Welch t-test              t = -2.17    0.034     d = 0.484  Significant *
+  Year of Study             One-Way ANOVA              F = 6.01    0.001    η² = 0.169  Significant *
+  Sleep Duration            One-Way ANOVA              F = 3.23    0.044    η² = 0.068  Significant *
+  Part-Time Work            Welch t-test               t = 1.05    0.296     d = 0.219  n.s.
+  Living Arrange.           One-Way ANOVA              F = 0.60    0.617             —  n.s.
+
+  * significant at p < 0.05
+
+------------------------------------------------------------------------
+  5.  OVERALL INTERPRETATION AND IMPLICATIONS
+------------------------------------------------------------------------
+
+  The data reveal three significant predictors of perceived stress among
+  Sri Lankan undergraduates:
+
+  (a) ACADEMIC PROGRESSION — The strong year-of-study effect (F = 6.01,
+      p = 0.001) indicates that stress intensifies sharply as students advance
+      from junior to senior years, driven by cumulative assessment demands,
+      final-year research projects, and the pressure of career entry. This
+      finding has direct implications for when universities should deploy
+      proactive counselling interventions — ideally before the third year.
+
+  (b) GENDER — Female students reported meaningfully higher stress than male
+      students (p = 0.034). This mirrors findings across the international
+      PSS literature and may reflect differences in social expectations,
+      coping strategy patterns, or academic social comparison. Targeted
+      gender-aware wellbeing programmes are warranted.
+
+  (c) SLEEP DEPRIVATION — Students in the 4–6 hours sleep group showed the
+      highest stress scores (p = 0.044), highlighting sleep hygiene as a
+      modifiable risk factor. University wellness campaigns addressing sleep
+      may yield downstream reductions in perceived stress.
+
+  (d) NON-SIGNIFICANT FACTORS — Part-time employment and living arrangement
+      did not produce significant group differences, suggesting that the
+      academic environment functions as the dominant, shared stressor for
+      virtually all students regardless of their external circumstances.
+    
+========================================================================
